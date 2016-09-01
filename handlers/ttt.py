@@ -69,14 +69,15 @@ class TicTacToeHandler(BaseHandler):
 			board = str(game)
 
 			# Game is over if result is 1 (Player O wins), or 5 (Player X wins)
+			# Delete the game so a new one can be created, if there is a winner
 			if result == 1:
 				self.delete_game(user_name, game, games)
-				return self.write({"response_type" : "in_channel", "text" : "Player O ({}) Wins! \n {}".format(board, self.playerO)}) 
+				return self.write({"response_type" : "in_channel", "text" : "```Player O ({}) Wins! \n {}```".format(self.playerO, board)}) 
 			elif result == 5:
 				self.delete_game(user_name, game, games)
-				return self.write({"response_type" : "in_channel", "text" : "Player X ({}) Wins! \n {}".format(board, self.playerX)})
+				return self.write({"response_type" : "in_channel", "text" : "```Player X ({}) Wins! \n {}```".format(self.playerX, board)})
 			else:
-				return self.write({"response_type" : "in_channel", "text" : "{}".format(board)})
+				return self.write({"response_type" : "in_channel", "text" : "```{}```".format(board)})
 
 		# End the game
 		elif command == "end":
