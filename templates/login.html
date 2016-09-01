@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block head %}
+
+<script type="text/javascript">
+
+    $(document).ready(function(event){
+        // DealflicksApp.initLogInPage();
+        // Login JS
+    }); 
+
+</script>
+
+{% end %}
+
+{% block body %}
+<form id="log-in-form" action="/login" method="post">
+<div class="row">
+    <input type="text" name="username" id="log-in-username" value="" placeholder="username"/>
+    <br>
+    <input type="password" name="password" id="log-in-password" value="" placeholder="password"/>
+    <button id="log-in-button">Log In</button>
+    <input type="hidden" name="form_type" value="login"/>
+</div>
+</form>
+
+ {% end %}

@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block title %}
+    <title>Edwards Is Welcoming You</title>
+{% end %}
+
+{% block body %}
+<h1>Welcome to the page{% if user %}, {{user['first_name']}}{% end %}</h1>
+
+<video width="320" height="240" controls>
+	<source src="/static/Papillon.1973.1080p.BluRay.x264.YIFY.mp4" type="video/mp4">
+	Your browser does not support the video tag.
+</video>
+{% end %}
