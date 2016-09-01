@@ -5,6 +5,7 @@ class TicTacToe:
 
 	# ## Private Instance Methods ###
 	def __init__(self, sg=None):
+		# Init Board
 		if sg is None:
 			self.board = [[0 for i in range(3)] for j in range(3)]
 			self.playerX = None
@@ -17,6 +18,7 @@ class TicTacToe:
 			self.playerO = sg["playerO"]
 			self.moveNum = sg["moveNum"]
 
+	# Export Class as Dict
 	def export(self):
 		save_game = {}
 		save_game["board"] = self.board
@@ -25,6 +27,7 @@ class TicTacToe:
 		save_game["moveNum"] = self.moveNum
 		return save_game
 
+	# String Representation
 	def __str__(self):
 		mapkey = {}
 		mapkey[0] = ' '
@@ -37,6 +40,7 @@ class TicTacToe:
 				string += "---------\n"
 		return string
 
+	# Move the player to that position doing necessary checks
 	def move(self, player, pos):
 		if (self.moveNum % 2 == 0 and player == self.playerX) or (self.moveNum % 2 == 1 and player == self.playerO):
 			self.updateBoard(pos)
@@ -44,13 +48,14 @@ class TicTacToe:
 		else:
 			return False
 
+	# Place the X (5) or O (1) on the board
 	def updateBoard(self, pos):
 		if pos > 8:
 			return
 		pos_x = pos % 3
 		pos_y = pos / 3
 
-		# Player 1 is 1, Player 0 (or 2) is 5
+		# Player 'X' is 1, Player 'O' (or 2) is 5
 		mov = 1
 		if self.moveNum % 2 == 0:
 			mov = 5
@@ -60,6 +65,7 @@ class TicTacToe:
 
 		# check board status
 
+	# Check if game has winner, returning 5 for 'X' and 1 or 'O'
 	def checkBoard(self):
 		rows = self.checkRows()
 		if rows:
