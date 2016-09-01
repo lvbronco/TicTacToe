@@ -36,7 +36,7 @@ class TicTacToeHandler(BaseHandler):
 		game = TicTacToe(games[channel_id])
 		if command == "print":
 			# Retrieve Board and Print it
-			return str(game)
+			return self.write({"response_type" : "in_channel", "text" : str(game)})
 		elif command == "move":
 			# Check if user is current player
 			print game
