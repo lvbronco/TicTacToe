@@ -4,28 +4,45 @@ class TicTacToe:
 	# ## Class Variables ###
 
 	# ## Private Instance Methods ###
-	def __init__(self, bd=None):
-		if bd is None:
-			bd = [[0 for i in range(3)] for j in range(3)]
+	def __init__(self, sg=None):
+		if sg is None:
+			self.board = [[0 for i in range(3)] for j in range(3)]
+			self.playerX = None
+			self.playerO = None
+			self.moveNum = 0
 		else:
-			bd = json.loads(bd)
-		self.board = bd 
-		self.playerX = None
-		self.playerO = None
-		self.moveNum = 0
+			# sg = json.loads(str(sg))
+			self.board = sg["board"]
+			self.playerX = sg["playerX"]
+			self.playerO = sg["playerO"]
+			self.moveNum = sg["moveNum"]
 
 	def export(self):
-		return json.dumps(self.board)
+		save_game = {}
+		save_game["board"] = self.board
+		save_game["playerX"] = self.playerX
+		save_game["playerO"] = self.playerO
+		save_game["moveNum"] = self.moveNum
+		return save_game
 
-	def printBoard(self):
+	def __str__(self):
 		mapkey = {}
 		mapkey[0] = ' '
 		mapkey[1] = 'O'
 		mapkey[5] = 'X'
+		string = ""
 		for i in range(3):
-			print "{} | {} | {}".format(mapkey[self.board[i][0]],mapkey[self.board[i][1]],mapkey[self.board[i][2]])
+			string += "{} | {} | {}\n".format(mapkey[self.board[i][0]],mapkey[self.board[i][1]],mapkey[self.board[i][2]])
 			if i < 2:
-				print "---------"
+				string += "---------\n"
+		return string
+
+	def move(self, player, pos):
+		if (self.moveNum % 2 == 0 and player == self.playerX) or (self.moveNum % 2 == 1 and player == self.playerO):
+			self.updateBoard(pos)
+			return True
+		else:
+			return False
 
 	def updateBoard(self, pos):
 		if pos > 8:
