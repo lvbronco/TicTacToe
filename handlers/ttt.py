@@ -7,6 +7,13 @@ from model.tictactoe import TicTacToe
 
 class TicTacToeHandler(BaseHandler):
 	def post(self):
+		# Check Token
+		token = self.get_argument("token", None)
+		
+		### NOTE: I didn't have time to set up the slack channel to get the token
+		#if token != valid_token_id
+		#	return self.send_error(500)
+
 		# Load Saved Games Into Memory
 		# This is a simplicity design for small project, a datastore like sql or caching like redis would be more optimal
 		games = self.load_games()
